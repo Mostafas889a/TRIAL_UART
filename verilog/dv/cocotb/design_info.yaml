@@ -2,8 +2,8 @@ CARAVEL_ROOT: /nc/templates/caravel
 MCW_ROOT: /nc/templates/mgmt_core_wrapper
 PDK: sky130A
 PDK_ROOT: /nc/apps/pdk
-USER_PROJECT_ROOT: /workspace/caravel_user_project
+USER_PROJECT_ROOT: /workspace/TRIAL_UART
 caravan: false
-clk_period_ns: 25      # Clock period in nanoseconds
+clk_period_ns: 25   # Clock period in nanoseconds
 emailto:
 - null
