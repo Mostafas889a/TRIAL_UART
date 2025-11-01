@@ -82,17 +82,16 @@ module user_project_wrapper #(
 /* User project is instantiated  here   */
 /*--------------------------------------*/
 
-user_proj_example mprj (
-`ifdef USE_POWER_PINS
-	.vccd1(vccd1),	// User area 1 1.8V power
-	.vssd1(vssd1),	// User area 1 digital ground
-`endif
+wire uart0_tx_wire;
+wire uart1_tx_wire;
 
+user_project mprj (
+`ifdef USE_POWER_PINS
+    .vccd1(vccd1),
+    .vssd1(vssd1),
+`endif
     .wb_clk_i(wb_clk_i),
     .wb_rst_i(wb_rst_i),
-
-    // MGMT SoC Wishbone Slave
-
     .wbs_cyc_i(wbs_cyc_i),
     .wbs_stb_i(wbs_stb_i),
     .wbs_we_i(wbs_we_i),
@@ -101,22 +100,91 @@ user_proj_example mprj (
     .wbs_dat_i(wbs_dat_i),
     .wbs_ack_o(wbs_ack_o),
     .wbs_dat_o(wbs_dat_o),
-
-    // Logic Analyzer
-
-    .la_data_in(la_data_in),
-    .la_data_out(la_data_out),
-    .la_oenb (la_oenb),
-
-    // IO Pads
-
-    .io_in ({io_in[37:30],io_in[7:0]}),
-    .io_out({io_out[37:30],io_out[7:0]}),
-    .io_oeb({io_oeb[37:30],io_oeb[7:0]}),
-
-    // IRQ
-    .irq(user_irq)
+    .user_irq(user_irq),
+    .uart0_rx(io_in[6]),
+    .uart0_tx(uart0_tx_wire),
+    .uart1_rx(io_in[8]),
+    .uart1_tx(uart1_tx_wire)
 );
+
+assign io_out[0] = 1'b0;
+assign io_oeb[0] = 1'b1;
+assign io_out[1] = 1'b0;
+assign io_oeb[1] = 1'b1;
+assign io_out[2] = 1'b0;
+assign io_oeb[2] = 1'b1;
+assign io_out[3] = 1'b0;
+assign io_oeb[3] = 1'b1;
+assign io_out[4] = 1'b0;
+assign io_oeb[4] = 1'b1;
+assign io_out[5] = 1'b0;
+assign io_oeb[5] = 1'b1;
+assign io_out[6] = 1'b0;
+assign io_oeb[6] = 1'b1;
+assign io_out[7] = uart0_tx_wire;
+assign io_oeb[7] = 1'b0;
+assign io_out[8] = 1'b0;
+assign io_oeb[8] = 1'b1;
+assign io_out[9] = uart1_tx_wire;
+assign io_oeb[9] = 1'b0;
+assign io_out[10] = 1'b0;
+assign io_oeb[10] = 1'b1;
+assign io_out[11] = 1'b0;
+assign io_oeb[11] = 1'b1;
+assign io_out[12] = 1'b0;
+assign io_oeb[12] = 1'b1;
+assign io_out[13] = 1'b0;
+assign io_oeb[13] = 1'b1;
+assign io_out[14] = 1'b0;
+assign io_oeb[14] = 1'b1;
+assign io_out[15] = 1'b0;
+assign io_oeb[15] = 1'b1;
+assign io_out[16] = 1'b0;
+assign io_oeb[16] = 1'b1;
+assign io_out[17] = 1'b0;
+assign io_oeb[17] = 1'b1;
+assign io_out[18] = 1'b0;
+assign io_oeb[18] = 1'b1;
+assign io_out[19] = 1'b0;
+assign io_oeb[19] = 1'b1;
+assign io_out[20] = 1'b0;
+assign io_oeb[20] = 1'b1;
+assign io_out[21] = 1'b0;
+assign io_oeb[21] = 1'b1;
+assign io_out[22] = 1'b0;
+assign io_oeb[22] = 1'b1;
+assign io_out[23] = 1'b0;
+assign io_oeb[23] = 1'b1;
+assign io_out[24] = 1'b0;
+assign io_oeb[24] = 1'b1;
+assign io_out[25] = 1'b0;
+assign io_oeb[25] = 1'b1;
+assign io_out[26] = 1'b0;
+assign io_oeb[26] = 1'b1;
+assign io_out[27] = 1'b0;
+assign io_oeb[27] = 1'b1;
+assign io_out[28] = 1'b0;
+assign io_oeb[28] = 1'b1;
+assign io_out[29] = 1'b0;
+assign io_oeb[29] = 1'b1;
+assign io_out[30] = 1'b0;
+assign io_oeb[30] = 1'b1;
+assign io_out[31] = 1'b0;
+assign io_oeb[31] = 1'b1;
+assign io_out[32] = 1'b0;
+assign io_oeb[32] = 1'b1;
+assign io_out[33] = 1'b0;
+assign io_oeb[33] = 1'b1;
+assign io_out[34] = 1'b0;
+assign io_oeb[34] = 1'b1;
+assign io_out[35] = 1'b0;
+assign io_oeb[35] = 1'b1;
+assign io_out[36] = 1'b0;
+assign io_oeb[36] = 1'b1;
+assign io_out[37] = 1'b0;
+assign io_oeb[37] = 1'b1;
+
+assign la_data_out = 128'b0;
 
 endmodule	// user_project_wrapper
 
